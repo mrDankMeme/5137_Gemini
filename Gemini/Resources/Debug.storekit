@@ -1,0 +1,242 @@
+{
+  "appPolicies": {
+    "eula": "",
+    "policies": [
+      {
+        "locale": "en_US",
+        "policyText": "",
+        "policyURL": ""
+      }
+    ]
+  },
+  "identifier": "5137GEMI",
+  "nonRenewingSubscriptions": [],
+  "products": [
+    {
+      "displayPrice": "9.99",
+      "familyShareable": false,
+      "internalID": "5137C001",
+      "localizations": [
+        {
+          "description": "",
+          "displayName": "",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "100_tokens_9.99",
+      "referenceName": "100_tokens_9.99",
+      "type": "Consumable"
+    },
+    {
+      "displayPrice": "19.99",
+      "familyShareable": false,
+      "internalID": "5137C002",
+      "localizations": [
+        {
+          "description": "",
+          "displayName": "",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "250_tokens_19.99",
+      "referenceName": "250_tokens_19.99",
+      "type": "Consumable"
+    },
+    {
+      "displayPrice": "34.99",
+      "familyShareable": false,
+      "internalID": "5137C003",
+      "localizations": [
+        {
+          "description": "",
+          "displayName": "",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "500_tokens_34.99",
+      "referenceName": "500_tokens_34.99",
+      "type": "Consumable"
+    },
+    {
+      "displayPrice": "59.99",
+      "familyShareable": false,
+      "internalID": "5137C004",
+      "localizations": [
+        {
+          "description": "",
+          "displayName": "",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "1000_tokens_59.99",
+      "referenceName": "1000_tokens_59.99",
+      "type": "Consumable"
+    },
+    {
+      "displayPrice": "99.99",
+      "familyShareable": false,
+      "internalID": "5137C005",
+      "localizations": [
+        {
+          "description": "",
+          "displayName": "",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "2000_tokens_99.99",
+      "referenceName": "2000_tokens_99.99",
+      "type": "Consumable"
+    }
+  ],
+  "settings": {
+    "_askToBuyEnabled": false,
+    "_billingGracePeriodEnabled": false,
+    "_billingIssuesEnabled": false,
+    "_disableDialogs": false,
+    "_failTransactionsEnabled": false,
+    "_locale": "en_US",
+    "_renewalBillingIssuesEnabled": false,
+    "_storeKitErrors": [],
+    "_storefront": "USA",
+    "_timeRate": 0
+  },
+  "subscriptionBundleGroups": [],
+  "subscriptionGroups": [
+    {
+      "id": "5137G001",
+      "localizations": [],
+      "name": "main",
+      "subscriptions": [
+        {
+          "adHocOffers": [],
+          "billingPlans": [
+            {
+              "billingPlanType": "BILLED_UPFRONT",
+              "commitmentDisplayPrice": "9.99",
+              "displayPrice": "9.99",
+              "internalID": "5137B001",
+              "isEnabled": true
+            }
+          ],
+          "codeOffers": [],
+          "displayPrice": "9.99",
+          "familyShareable": false,
+          "groupNumber": 1,
+          "internalID": "5137A001",
+          "introductoryOffers": [],
+          "localizations": [
+            {
+              "description": "",
+              "displayName": "",
+              "locale": "en_US"
+            }
+          ],
+          "productID": "weekly_9.99_nottrial",
+          "recurringSubscriptionPeriod": "P1W",
+          "referenceName": "weekly_9.99_nottrial",
+          "subscriptionGroupID": "5137G001",
+          "type": "RecurringSubscription",
+          "winbackOffers": []
+        },
+        {
+          "adHocOffers": [],
+          "billingPlans": [
+            {
+              "billingPlanType": "BILLED_UPFRONT",
+              "commitmentDisplayPrice": "19.99",
+              "displayPrice": "19.99",
+              "internalID": "5137B002",
+              "isEnabled": true
+            }
+          ],
+          "codeOffers": [],
+          "displayPrice": "19.99",
+          "familyShareable": false,
+          "groupNumber": 1,
+          "internalID": "5137A002",
+          "introductoryOffers": [],
+          "localizations": [
+            {
+              "description": "",
+              "displayName": "",
+              "locale": "en_US"
+            }
+          ],
+          "productID": "monthly_19.99_nottrial",
+          "recurringSubscriptionPeriod": "P1M",
+          "referenceName": "monthly_19.99_nottrial",
+          "subscriptionGroupID": "5137G001",
+          "type": "RecurringSubscription",
+          "winbackOffers": []
+        },
+        {
+          "adHocOffers": [],
+          "billingPlans": [
+            {
+              "billingPlanType": "BILLED_UPFRONT",
+              "commitmentDisplayPrice": "59.99",
+              "displayPrice": "59.99",
+              "internalID": "5137B003",
+              "isEnabled": true
+            }
+          ],
+          "codeOffers": [],
+          "displayPrice": "59.99",
+          "familyShareable": false,
+          "groupNumber": 1,
+          "internalID": "5137A003",
+          "introductoryOffers": [],
+          "localizations": [
+            {
+              "description": "",
+              "displayName": "",
+              "locale": "en_US"
+            }
+          ],
+          "productID": "yearly_59.99_nottrial",
+          "recurringSubscriptionPeriod": "P1Y",
+          "referenceName": "yearly_59.99_nottrial",
+          "subscriptionGroupID": "5137G001",
+          "type": "RecurringSubscription",
+          "winbackOffers": []
+        },
+        {
+          "adHocOffers": [],
+          "billingPlans": [
+            {
+              "billingPlanType": "BILLED_UPFRONT",
+              "commitmentDisplayPrice": "4.99",
+              "displayPrice": "4.99",
+              "internalID": "5137B004",
+              "isEnabled": true
+            }
+          ],
+          "codeOffers": [],
+          "displayPrice": "4.99",
+          "familyShareable": false,
+          "groupNumber": 1,
+          "internalID": "5137A004",
+          "introductoryOffers": [],
+          "localizations": [
+            {
+              "description": "",
+              "displayName": "",
+              "locale": "en_US"
+            }
+          ],
+          "productID": "offer_week_4.99_nottrial",
+          "recurringSubscriptionPeriod": "P1W",
+          "referenceName": "offer_week_4.99_nottrial",
+          "subscriptionGroupID": "5137G001",
+          "type": "RecurringSubscription",
+          "winbackOffers": []
+        }
+      ]
+    }
+  ],
+  "subscriptionSuiteGroups": [],
+  "version": {
+    "major": 5,
+    "minor": 0
+  }
+}

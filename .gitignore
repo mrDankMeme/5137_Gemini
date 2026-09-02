@@ -1,0 +1,28 @@
+# Xcode
+build/
+DerivedData/
+*.xcuserstate
+xcuserdata/
+*.xcscmblueprint
+*.xccheckout
+.DS_Store
+
+# SPM
+.swiftpm/
+Packages/
+Package.resolved.bak
+
+# CocoaPods
+Pods/
+
+# Локальный дамп Figma и экспортированные превью — не в репозиторий
+.design/
+
+# окружение для скриптов из tools/ (Pillow)
+.venv/
+
+# Локальные ключи и сертификаты для CI/App Store Connect
+.private-signing/
+*.p8
+*.p12
+*.mobileprovision

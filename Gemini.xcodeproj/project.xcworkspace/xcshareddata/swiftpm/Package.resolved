@@ -1,0 +1,60 @@
+{
+  "originHash" : "81887ea9bfcc35023eb5cfdb144ba2d0a41501a5fccb2b0cc0627660c68aa758",
+  "pins" : [
+    {
+      "identity" : "adaptysdk-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/adaptyteam/AdaptySDK-iOS.git",
+      "state" : {
+        "revision" : "2c73ea4599b2e30bd4ba0a72660e1497a7b069f3",
+        "version" : "3.17.3"
+      }
+    },
+    {
+      "identity" : "broad-core-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/BroadApps-official/broad-core-ios.git",
+      "state" : {
+        "revision" : "b2fb737e1ffc0b1e0908c53965ff0daded2be07b",
+        "version" : "1.0.0"
+      }
+    },
+    {
+      "identity" : "broad-extensions-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/BroadApps-official/broad-extensions-ios.git",
+      "state" : {
+        "revision" : "6ae3720885ba5fcc74deea1d116d589c24141a2e",
+        "version" : "1.0.0"
+      }
+    },
+    {
+      "identity" : "broad-monetization-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/BroadApps-official/broad-monetization-ios.git",
+      "state" : {
+        "revision" : "b90a7af6f09f49e9426cde043dc97dbb8759de79",
+        "version" : "1.0.0"
+      }
+    },
+    {
+      "identity" : "broad-ui-flows-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/BroadApps-official/broad-ui-flows-ios.git",
+      "state" : {
+        "revision" : "2d1aa9a5efd12f40eab7b2d035545f43c8adab0a",
+        "version" : "1.0.0"
+      }
+    },
+    {
+      "identity" : "swinject",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Swinject/Swinject.git",
+      "state" : {
+        "revision" : "b685b549fe4d8ae265fc7a2f27d0789720425d69",
+        "version" : "2.10.0"
+      }
+    }
+  ],
+  "version" : 3
+}

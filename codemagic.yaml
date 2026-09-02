@@ -1,0 +1,59 @@
+workflows:
+  ios-native-quick-start:
+    name: iOS Native
+    max_build_duration: 120
+    instance_type: mac_mini_m1
+    integrations:
+      # Name of the App Store Connect integration as it is called in Codemagic team settings
+      # (Teams → Integrations → App Store Connect). Must be created there first — the build fails
+      # immediately if this name does not exist. Key ID X64YD2GH4Q / Issuer ID
+      # af0458fe-47ee-4f30-9894-d68916e9f24a / P8 from the account manager go there, not here.
+      app_store_connect: 5137_Gemini_v2
+    environment:
+      ios_signing:
+        distribution_type: app_store
+        bundle_identifier: com.ras.5137g4m769
+      vars:
+        BUNDLE_ID: "com.ras.5137g4m769"
+        XCODE_PROJECT: "Gemini.xcodeproj"
+        XCODE_SCHEME: "Gemini"
+        APP_STORE_APPLE_ID: 6805904639
+      xcode: latest
+    scripts:
+      # No CocoaPods step: this project has no Podfile, the platform comes in over SPM.
+      - name: Resolve Swift Package Manager dependencies
+        script: |
+          xcodebuild -resolvePackageDependencies \
+            -project "$CM_BUILD_DIR/$XCODE_PROJECT" \
+            -scheme "$XCODE_SCHEME"
+      - name: Set up provisioning profiles settings on Xcode project
+        script: xcode-project use-profiles
+      - name: Increment build number
+        script: |
+          cd $CM_BUILD_DIR
+          LATEST_BUILD_NUMBER=$(app-store-connect get-latest-app-store-build-number "$APP_STORE_APPLE_ID")
+          agvtool new-version -all $(($LATEST_BUILD_NUMBER + 1))
+      - name: Build ipa for distribution
+        script: |
+          xcode-project build-ipa \
+            --project "$CM_BUILD_DIR/$XCODE_PROJECT" \
+            --scheme "$XCODE_SCHEME"
+    artifacts:
+      - build/ios/ipa/*.ipa
+      - /tmp/xcodebuild_logs/*.log
+      - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.app
+      - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.dSYM
+    publishing:
+      email:
+        recipients:
+          - dyahdiyaning8689@gmail.com
+        notify:
+          success: true
+          failure: true
+      app_store_connect:
+        auth: integration
+        # Left off deliberately for the first run (И1): the build lands in App Store Connect
+        # as a processed build without being pushed to testers or review. Flip when the flow
+        # is proven, same as 5142_Groq.
+        submit_to_testflight: false
+        submit_to_app_store: false

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>CFBundleDisplayName</key>
+	<string>Fenuko Flow</string>
+	<key>CFBundleExecutable</key>
+	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleIdentifier</key>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>$(PRODUCT_NAME)</string>
+	<key>CFBundlePackageType</key>
+	<string>$(PRODUCT_BUNDLE_PACKAGE_TYPE)</string>
+	<key>CFBundleShortVersionString</key>
+	<string>$(MARKETING_VERSION)</string>
+	<key>CFBundleVersion</key>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
+	<key>UIApplicationSupportsIndirectInputEvents</key>
+	<true/>
+	<!-- Без UILaunchScreen iOS запускает приложение в режиме совместимости:
+	     холст становится 320 pt шириной и растягивается на весь экран.
+	     Настройки INFOPLIST_KEY_* тут не помогают — они работают только тогда,
+	     когда Xcode генерирует Info.plist сам, а у нас файл свой. -->
+	<key>UILaunchScreen</key>
+	<dict>
+		<key>UIColorName</key>
+		<string>LaunchBackground</string>
+	</dict>
+	<key>UIUserInterfaceStyle</key>
+	<string>Dark</string>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+	</array>
+	<key>NSCameraUsageDescription</key>
+	<string>Fenuko Flow needs camera access so you can take a photo and send it in a chat.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Fenuko Flow needs photo access so you can attach images to a message.</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Fenuko Flow saves the images and videos you generate to your photo library.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Fenuko Flow needs microphone access for voice input.</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>Speech recognition turns what you dictate into a message.</string>
+	<key>NSUserTrackingUsageDescription</key>
+	<string>This lets us show suggestions that fit you better.</string>
+</dict>
+</plist>

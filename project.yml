@@ -1,0 +1,102 @@
+name: Gemini
+options:
+  bundleIdPrefix: com.broadapps
+  deploymentTarget:
+    iOS: "18.0"
+  developmentLanguage: en
+  createIntermediateGroups: true
+  groupSortPosition: top
+  generateEmptyDirectories: true
+
+settings:
+  base:
+    SWIFT_VERSION: "5.0"
+    MARKETING_VERSION: "1.0"
+    CURRENT_PROJECT_VERSION: "1"
+    CODE_SIGN_STYLE: Automatic
+    ENABLE_USER_SCRIPT_SANDBOXING: NO
+    SWIFT_DEFAULT_ACTOR_ISOLATION: MainActor
+    SWIFT_APPROACHABLE_CONCURRENCY: YES
+    # Компилятор вынимает строки из кода в каталог. Без этого `Localizable.xcstrings`
+    # остаётся пустым, и приложение «локализовано» только на бумаге.
+    SWIFT_EMIT_LOC_STRINGS: YES
+    LOCALIZATION_PREFERS_STRING_CATALOGS: YES
+
+# Четыре публичных пакета платформы вместо приватного монолита.
+# Приватный монолит платформы объявлен устаревшим: он экспортировал
+# все четыре модуля разом, и держать его рядом с публичными нельзя — два владельца
+# на одно имя модуля граф не соберёт.
+#
+# Версии точные, как велит `Compatibility/current.yml` платформы: сами модули
+# зависят друг от друга через `from:`, поэтому без точного пина приложение
+# получило бы набор, который никто не проверял вместе.
+packages:
+  BroadCore:
+    url: https://github.com/BroadApps-official/broad-core-ios.git
+    exactVersion: 1.0.0
+  BroadMonetization:
+    url: https://github.com/BroadApps-official/broad-monetization-ios.git
+    exactVersion: 1.0.0
+  BroadUIFlows:
+    url: https://github.com/BroadApps-official/broad-ui-flows-ios.git
+    exactVersion: 1.0.0
+  BroadExtensions:
+    url: https://github.com/BroadApps-official/broad-extensions-ios.git
+    exactVersion: 1.0.0
+
+targets:
+  Gemini:
+    type: application
+    platform: iOS
+    sources:
+      - path: Gemini
+    dependencies:
+      - package: BroadCore
+        product: BroadCore
+      - package: BroadMonetization
+        product: BroadMonetization
+      - package: BroadUIFlows
+        product: BroadUIFlows
+      - package: BroadExtensions
+        product: BroadExtensions
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.ras.5137g4m769
+        INFOPLIST_FILE: Gemini/Resources/Info.plist
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
+        TARGETED_DEVICE_FAMILY: "1"
+        SUPPORTED_PLATFORMS: iphoneos iphonesimulator
+        SUPPORTS_MACCATALYST: NO
+      # Debug ставится на личный телефон разработчика: свой bundle и своя команда,
+      # иначе Xcode требует аккаунт клиентской команды, которого на машине нет.
+      # Тот же приём, что в 232 и 5142.
+      configs:
+        debug:
+          # `.dev` только для устройства: там нужен свой bundle под личную
+          # подпись. На симуляторе подпись не нужна, а вот продукты нужны —
+          # под `.dev` их не находит ни App Store, ни Adapty, и пейвол выходит
+          # пустым. Конфигурация StoreKit подставляется только при запуске
+          # из Xcode, через `simctl` её нет.
+          PRODUCT_BUNDLE_IDENTIFIER: com.ras.5137g4m769
+          PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*]: com.ras.5137g4m769.dev
+          DEVELOPMENT_TEAM: SXCBCPV7Y9
+        release:
+          PRODUCT_BUNDLE_IDENTIFIER: com.ras.5137g4m769
+          DEVELOPMENT_TEAM: WD86HTXNWY
+
+schemes:
+  Gemini:
+    build:
+      targets:
+        Gemini: all
+    run:
+      config: Debug
+      # Отладочный ADMIN_KEY при необходимости передаётся локально через окружение
+      # и никогда не хранится в проекте или публичном репозитории.
+      # Локальная эмуляция покупок в симуляторе — без сети и без Apple, теми же
+      # product ID, что в `DevelopmentConfiguration.subscriptionProductIDs`
+      # и в реальном каталоге токенов. Тот же паттерн, что у 5142_Groq.
+      storeKitConfiguration: Gemini/Resources/Debug.storekit
+    archive:
+      config: Release
