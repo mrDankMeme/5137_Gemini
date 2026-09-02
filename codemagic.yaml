@@ -3,16 +3,12 @@ workflows:
     name: iOS Native
     max_build_duration: 120
     instance_type: mac_mini_m1
-    integrations:
-      # Name of the App Store Connect integration as it is called in Codemagic team settings
-      # (Teams → Integrations → App Store Connect). Must be created there first — the build fails
-      # immediately if this name does not exist. Key ID X64YD2GH4Q / Issuer ID
-      # af0458fe-47ee-4f30-9894-d68916e9f24a / P8 from the account manager go there, not here.
-      app_store_connect: 5137_Gemini
     environment:
-      ios_signing:
-        distribution_type: app_store
-        bundle_identifier: com.ras.5137g4m769
+      groups:
+        # Та же группа App Store Connect, что в рабочем workflow 5136.
+        # certificate_credentials намеренно не подключаем: её некорректный
+        # CERTIFICATE_PRIVATE_KEY ломал CLI до обращения к Apple.
+        - app_store_credentials
       vars:
         BUNDLE_ID: "com.ras.5137g4m769"
         XCODE_PROJECT: "Gemini.xcodeproj"
@@ -26,6 +22,17 @@ workflows:
           xcodebuild -resolvePackageDependencies \
             -project "$CM_BUILD_DIR/$XCODE_PROJECT" \
             -scheme "$XCODE_SCHEME"
+      - name: Set up keychain to be used for codesigning using Codemagic CLI 'keychain' command
+        script: keychain initialize
+      - name: Fetch signing files
+        script: |
+          app-store-connect fetch-signing-files "$BUNDLE_ID" \
+            --type IOS_APP_STORE \
+            --platform=IOS \
+            --create \
+            --certificate-key-password='51375137'
+      - name: Use system default keychain
+        script: keychain add-certificates
       - name: Set up provisioning profiles settings on Xcode project
         script: xcode-project use-profiles
       - name: Increment build number
@@ -35,9 +42,13 @@ workflows:
           agvtool new-version -all $(($LATEST_BUILD_NUMBER + 1))
       - name: Build ipa for distribution
         script: |
+          xcode-project use-profiles
           xcode-project build-ipa \
             --project "$CM_BUILD_DIR/$XCODE_PROJECT" \
-            --scheme "$XCODE_SCHEME"
+            --scheme "$XCODE_SCHEME" \
+            --archive-flags "-destination 'generic/platform=iOS'" \
+            --archive-xcargs "CODE_SIGNING_REQUIRED=YES CODE_SIGNING_ALLOWED=YES" \
+            --verbose
     artifacts:
       - build/ios/ipa/*.ipa
       - /tmp/xcodebuild_logs/*.log
@@ -51,9 +62,8 @@ workflows:
           success: true
           failure: true
       app_store_connect:
-        auth: integration
-        # Left off deliberately for the first run (И1): the build lands in App Store Connect
-        # as a processed build without being pushed to testers or review. Flip when the flow
-        # is proven, same as 5142_Groq.
-        submit_to_testflight: false
+        api_key: $APP_STORE_CONNECT_PRIVATE_KEY
+        key_id: $APP_STORE_CONNECT_KEY_IDENTIFIER
+        issuer_id: $APP_STORE_CONNECT_ISSUER_ID
+        submit_to_testflight: true
         submit_to_app_store: false
