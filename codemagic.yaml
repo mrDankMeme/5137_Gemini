@@ -8,7 +8,7 @@ workflows:
       # (Teams → Integrations → App Store Connect). Must be created there first — the build fails
       # immediately if this name does not exist. Key ID X64YD2GH4Q / Issuer ID
       # af0458fe-47ee-4f30-9894-d68916e9f24a / P8 from the account manager go there, not here.
-      app_store_connect: 5137_Gemini_v2
+      app_store_connect: 5137_Gemini
     environment:
       ios_signing:
         distribution_type: app_store
