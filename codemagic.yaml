@@ -5,10 +5,10 @@ workflows:
     instance_type: mac_mini_m1
     environment:
       groups:
-        # Та же группа App Store Connect, что в рабочем workflow 5136.
-        # certificate_credentials намеренно не подключаем: её некорректный
-        # CERTIFICATE_PRIVATE_KEY ломал CLI до обращения к Apple.
+        # Те же две группы, что в рабочем workflow 5136. Для 5137 в
+        # certificate_credentials сохранён отдельный валидный RSA PEM.
         - app_store_credentials
+        - certificate_credentials
       vars:
         BUNDLE_ID: "com.ras.5137g4m769"
         XCODE_PROJECT: "Gemini.xcodeproj"
