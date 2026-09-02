@@ -29,8 +29,7 @@ workflows:
           app-store-connect fetch-signing-files "$BUNDLE_ID" \
             --type IOS_APP_STORE \
             --platform=IOS \
-            --create \
-            --certificate-key-password='51375137'
+            --create
       - name: Use system default keychain
         script: keychain add-certificates
       - name: Set up provisioning profiles settings on Xcode project
